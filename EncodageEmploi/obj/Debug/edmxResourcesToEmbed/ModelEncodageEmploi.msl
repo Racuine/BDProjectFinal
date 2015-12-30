@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DBIG3A5ModelStoreContainer" CdmEntityContainer="DBIG3A5Entities">
+    <EntitySetMapping Name="DenominationEmploi">
+      <EntityTypeMapping TypeName="DBIG3A5Model.DenominationEmploi">
+        <MappingFragment StoreEntitySet="DenominationEmploi">
+          <ScalarProperty Name="idLangue" ColumnName="idLangue" />
+          <ScalarProperty Name="denominationEmploi1" ColumnName="denominationEmploi" />
+          <ScalarProperty Name="idDenom" ColumnName="idDenom" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DenominationRisque">
+      <EntityTypeMapping TypeName="DBIG3A5Model.DenominationRisque">
+        <MappingFragment StoreEntitySet="DenominationRisque">
+          <ScalarProperty Name="idLangue" ColumnName="idLangue" />
+          <ScalarProperty Name="denomination" ColumnName="denomination" />
+          <ScalarProperty Name="idDenom" ColumnName="idDenom" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Emploi">
+      <EntityTypeMapping TypeName="DBIG3A5Model.Emploi">
+        <MappingFragment StoreEntitySet="Emploi">
+          <ScalarProperty Name="denom" ColumnName="denom" />
+          <ScalarProperty Name="dateSortie" ColumnName="dateSortie" />
+          <ScalarProperty Name="dateEntree" ColumnName="dateEntree" />
+          <ScalarProperty Name="codeTravail" ColumnName="codeTravail" />
+          <ScalarProperty Name="entreprise" ColumnName="entreprise" />
+          <ScalarProperty Name="travailleur" ColumnName="travailleur" />
+          <ScalarProperty Name="idTravail" ColumnName="idTravail" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Entreprise">
+      <EntityTypeMapping TypeName="DBIG3A5Model.Entreprise">
+        <MappingFragment StoreEntitySet="Entreprise">
+          <ScalarProperty Name="idLangue" ColumnName="idLangue" />
+          <ScalarProperty Name="nbrTravNonSoumis" ColumnName="nbrTravNonSoumis" />
+          <ScalarProperty Name="nbrTravSoumis" ColumnName="nbrTravSoumis" />
+          <ScalarProperty Name="numTel" ColumnName="numTel" />
+          <ScalarProperty Name="denominationEntreprise" ColumnName="denominationEntreprise" />
+          <ScalarProperty Name="numero" ColumnName="numero" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Langue">
+      <EntityTypeMapping TypeName="DBIG3A5Model.Langue">
+        <MappingFragment StoreEntitySet="Langue">
+          <ScalarProperty Name="libelle" ColumnName="libelle" />
+          <ScalarProperty Name="idLangue" ColumnName="idLangue" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Risque">
+      <EntityTypeMapping TypeName="DBIG3A5Model.Risque">
+        <MappingFragment StoreEntitySet="Risque">
+          <ScalarProperty Name="idDenom" ColumnName="idDenom" />
+          <ScalarProperty Name="pourc" ColumnName="pourc" />
+          <ScalarProperty Name="idRisque" ColumnName="idRisque" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Travailleur">
+      <EntityTypeMapping TypeName="DBIG3A5Model.Travailleur">
+        <MappingFragment StoreEntitySet="Travailleur">
+          <ScalarProperty Name="numeroDossierMed" ColumnName="numeroDossierMed" />
+          <ScalarProperty Name="nom" ColumnName="nom" />
+          <ScalarProperty Name="idTravailleur" ColumnName="idTravailleur" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="RisqueEmploi" TypeName="DBIG3A5Model.RisqueEmploi" StoreEntitySet="RisqueEmploi">
+      <EndProperty Name="Risque">
+        <ScalarProperty Name="idRisque" ColumnName="idRisque" />
+      </EndProperty>
+      <EndProperty Name="Emploi">
+        <ScalarProperty Name="idTravail" ColumnName="idTravail" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

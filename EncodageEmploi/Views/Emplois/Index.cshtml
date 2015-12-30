@@ -1,0 +1,71 @@
+﻿@model IEnumerable<EncodageEmploi.Emploi>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.codeTravail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dateEntree)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dateSortie)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DenominationEmploi.denominationEmploi1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Entreprise1.denominationEntreprise)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Travailleur1.nom)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.codeTravail)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dateEntree)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dateSortie)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DenominationEmploi.denominationEmploi1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Entreprise1.denominationEntreprise)
+        </td>
+        <td> 
+            @Html.DisplayFor(modelItem => item.Travailleur1.nom)  
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.idTravail }) |
+            @Html.ActionLink("Details", "Details", new { id=item.idTravail }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.idTravail })
+        </td>
+    </tr>
+}
+
+</table>
+
+<a href="~/Travailleurs">
+    Update Workers
+</a>
+<br />
+<a href="~/Entreprises">
+    Update Entreprise
+</a>

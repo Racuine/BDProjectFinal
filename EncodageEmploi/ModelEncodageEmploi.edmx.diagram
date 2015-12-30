@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="cdf61211799649739f891257b6175a7d" Name="Diagram1">
+        <EntityTypeShape EntityType="DBIG3A5Model.DenominationEmploi" Width="1.5" PointX="3" PointY="7.875" />
+        <EntityTypeShape EntityType="DBIG3A5Model.DenominationRisque" Width="1.5" PointX="3" PointY="1.875" />
+        <EntityTypeShape EntityType="DBIG3A5Model.Emploi" Width="1.5" PointX="5.25" PointY="5.625" />
+        <EntityTypeShape EntityType="DBIG3A5Model.Entreprise" Width="1.5" PointX="3" PointY="4.625" />
+        <EntityTypeShape EntityType="DBIG3A5Model.Langue" Width="1.5" PointX="0.75" PointY="4.875" />
+        <EntityTypeShape EntityType="DBIG3A5Model.Risque" Width="1.5" PointX="7.5" PointY="4.375" />
+        <EntityTypeShape EntityType="DBIG3A5Model.Travailleur" Width="1.5" PointX="3" PointY="11.375" />
+        <AssociationConnector Association="DBIG3A5Model.REF_Denom_Langu_2_FK" />
+        <AssociationConnector Association="DBIG3A5Model.REF_Emplo_Denom_FK" />
+        <AssociationConnector Association="DBIG3A5Model.REF_Denom_Langu_FK" />
+        <AssociationConnector Association="DBIG3A5Model.REF_Risqu_Denom_FK" />
+        <AssociationConnector Association="DBIG3A5Model.REF_Emplo_Entre" />
+        <AssociationConnector Association="DBIG3A5Model.REF_Emplo_Trava_FK" />
+        <AssociationConnector Association="DBIG3A5Model.REF_Entre_Langu_FK" />
+        <AssociationConnector Association="DBIG3A5Model.RisqueEmploi" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

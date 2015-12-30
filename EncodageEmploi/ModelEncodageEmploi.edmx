@@ -1,0 +1,549 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DBIG3A5Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="DenominationEmploi">
+          <Key>
+            <PropertyRef Name="idDenom" />
+          </Key>
+          <Property Name="idDenom" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="denominationEmploi" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="idLangue" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DenominationRisque">
+          <Key>
+            <PropertyRef Name="idDenom" />
+          </Key>
+          <Property Name="idDenom" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="denomination" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="idLangue" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Emploi">
+          <Key>
+            <PropertyRef Name="idTravail" />
+          </Key>
+          <Property Name="idTravail" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="travailleur" Type="int" Nullable="false" />
+          <Property Name="entreprise" Type="int" Nullable="false" />
+          <Property Name="codeTravail" Type="numeric" Precision="7" Scale="0" Nullable="false" />
+          <Property Name="dateEntree" Type="date" Nullable="false" />
+          <Property Name="dateSortie" Type="date" />
+          <Property Name="denom" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Entreprise">
+          <Key>
+            <PropertyRef Name="numero" />
+          </Key>
+          <Property Name="numero" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="denominationEntreprise" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="numTel" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="nbrTravSoumis" Type="numeric" Precision="7" Scale="0" Nullable="false" />
+          <Property Name="nbrTravNonSoumis" Type="numeric" Precision="7" Scale="0" Nullable="false" />
+          <Property Name="idLangue" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Langue">
+          <Key>
+            <PropertyRef Name="idLangue" />
+          </Key>
+          <Property Name="idLangue" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="libelle" Type="varchar" MaxLength="40" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Risque">
+          <Key>
+            <PropertyRef Name="idRisque" />
+          </Key>
+          <Property Name="idRisque" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="pourc" Type="int" Nullable="false" />
+          <Property Name="idDenom" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RisqueEmploi">
+          <Key>
+            <PropertyRef Name="idTravail" />
+            <PropertyRef Name="idRisque" />
+          </Key>
+          <Property Name="idTravail" Type="int" Nullable="false" />
+          <Property Name="idRisque" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Travailleur">
+          <Key>
+            <PropertyRef Name="idTravailleur" />
+          </Key>
+          <Property Name="idTravailleur" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nom" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="numeroDossierMed" Type="numeric" Precision="7" Scale="0" Nullable="false" />
+        </EntityType>
+        <Association Name="REF_Denom_Langu_2_FK">
+          <End Role="Langue" Type="Self.Langue" Multiplicity="1" />
+          <End Role="DenominationEmploi" Type="Self.DenominationEmploi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Langue">
+              <PropertyRef Name="idLangue" />
+            </Principal>
+            <Dependent Role="DenominationEmploi">
+              <PropertyRef Name="idLangue" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="REF_Denom_Langu_FK">
+          <End Role="Langue" Type="Self.Langue" Multiplicity="1" />
+          <End Role="DenominationRisque" Type="Self.DenominationRisque" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Langue">
+              <PropertyRef Name="idLangue" />
+            </Principal>
+            <Dependent Role="DenominationRisque">
+              <PropertyRef Name="idLangue" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="REF_Emplo_Denom_FK">
+          <End Role="DenominationEmploi" Type="Self.DenominationEmploi" Multiplicity="1" />
+          <End Role="Emploi" Type="Self.Emploi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DenominationEmploi">
+              <PropertyRef Name="idDenom" />
+            </Principal>
+            <Dependent Role="Emploi">
+              <PropertyRef Name="denom" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="REF_Emplo_Entre">
+          <End Role="Entreprise" Type="Self.Entreprise" Multiplicity="1" />
+          <End Role="Emploi" Type="Self.Emploi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entreprise">
+              <PropertyRef Name="numero" />
+            </Principal>
+            <Dependent Role="Emploi">
+              <PropertyRef Name="entreprise" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="REF_Emplo_Trava_FK">
+          <End Role="Travailleur" Type="Self.Travailleur" Multiplicity="1" />
+          <End Role="Emploi" Type="Self.Emploi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Travailleur">
+              <PropertyRef Name="idTravailleur" />
+            </Principal>
+            <Dependent Role="Emploi">
+              <PropertyRef Name="travailleur" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="REF_Entre_Langu_FK">
+          <End Role="Langue" Type="Self.Langue" Multiplicity="1" />
+          <End Role="Entreprise" Type="Self.Entreprise" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Langue">
+              <PropertyRef Name="idLangue" />
+            </Principal>
+            <Dependent Role="Entreprise">
+              <PropertyRef Name="idLangue" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="REF_Risqu_Denom_FK">
+          <End Role="DenominationRisque" Type="Self.DenominationRisque" Multiplicity="1" />
+          <End Role="Risque" Type="Self.Risque" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DenominationRisque">
+              <PropertyRef Name="idDenom" />
+            </Principal>
+            <Dependent Role="Risque">
+              <PropertyRef Name="idDenom" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="REF_Risqu_Emploi">
+          <End Role="Emploi" Type="Self.Emploi" Multiplicity="1" />
+          <End Role="RisqueEmploi" Type="Self.RisqueEmploi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Emploi">
+              <PropertyRef Name="idTravail" />
+            </Principal>
+            <Dependent Role="RisqueEmploi">
+              <PropertyRef Name="idTravail" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="REF_Risqu_Risqu">
+          <End Role="Risque" Type="Self.Risque" Multiplicity="1" />
+          <End Role="RisqueEmploi" Type="Self.RisqueEmploi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Risque">
+              <PropertyRef Name="idRisque" />
+            </Principal>
+            <Dependent Role="RisqueEmploi">
+              <PropertyRef Name="idRisque" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DBIG3A5ModelStoreContainer">
+          <EntitySet Name="DenominationEmploi" EntityType="Self.DenominationEmploi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DenominationRisque" EntityType="Self.DenominationRisque" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Emploi" EntityType="Self.Emploi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Entreprise" EntityType="Self.Entreprise" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Langue" EntityType="Self.Langue" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Risque" EntityType="Self.Risque" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RisqueEmploi" EntityType="Self.RisqueEmploi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Travailleur" EntityType="Self.Travailleur" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="REF_Denom_Langu_2_FK" Association="Self.REF_Denom_Langu_2_FK">
+            <End Role="Langue" EntitySet="Langue" />
+            <End Role="DenominationEmploi" EntitySet="DenominationEmploi" />
+          </AssociationSet>
+          <AssociationSet Name="REF_Denom_Langu_FK" Association="Self.REF_Denom_Langu_FK">
+            <End Role="Langue" EntitySet="Langue" />
+            <End Role="DenominationRisque" EntitySet="DenominationRisque" />
+          </AssociationSet>
+          <AssociationSet Name="REF_Emplo_Denom_FK" Association="Self.REF_Emplo_Denom_FK">
+            <End Role="DenominationEmploi" EntitySet="DenominationEmploi" />
+            <End Role="Emploi" EntitySet="Emploi" />
+          </AssociationSet>
+          <AssociationSet Name="REF_Emplo_Entre" Association="Self.REF_Emplo_Entre">
+            <End Role="Entreprise" EntitySet="Entreprise" />
+            <End Role="Emploi" EntitySet="Emploi" />
+          </AssociationSet>
+          <AssociationSet Name="REF_Emplo_Trava_FK" Association="Self.REF_Emplo_Trava_FK">
+            <End Role="Travailleur" EntitySet="Travailleur" />
+            <End Role="Emploi" EntitySet="Emploi" />
+          </AssociationSet>
+          <AssociationSet Name="REF_Entre_Langu_FK" Association="Self.REF_Entre_Langu_FK">
+            <End Role="Langue" EntitySet="Langue" />
+            <End Role="Entreprise" EntitySet="Entreprise" />
+          </AssociationSet>
+          <AssociationSet Name="REF_Risqu_Denom_FK" Association="Self.REF_Risqu_Denom_FK">
+            <End Role="DenominationRisque" EntitySet="DenominationRisque" />
+            <End Role="Risque" EntitySet="Risque" />
+          </AssociationSet>
+          <AssociationSet Name="REF_Risqu_Emploi" Association="Self.REF_Risqu_Emploi">
+            <End Role="Emploi" EntitySet="Emploi" />
+            <End Role="RisqueEmploi" EntitySet="RisqueEmploi" />
+          </AssociationSet>
+          <AssociationSet Name="REF_Risqu_Risqu" Association="Self.REF_Risqu_Risqu">
+            <End Role="Risque" EntitySet="Risque" />
+            <End Role="RisqueEmploi" EntitySet="RisqueEmploi" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DBIG3A5Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="DBIG3A5Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="DenominationEmploi" EntityType="DBIG3A5Model.DenominationEmploi" />
+          <EntitySet Name="DenominationRisque" EntityType="DBIG3A5Model.DenominationRisque" />
+          <EntitySet Name="Emploi" EntityType="DBIG3A5Model.Emploi" />
+          <EntitySet Name="Entreprise" EntityType="DBIG3A5Model.Entreprise" />
+          <EntitySet Name="Langue" EntityType="DBIG3A5Model.Langue" />
+          <EntitySet Name="Risque" EntityType="DBIG3A5Model.Risque" />
+          <EntitySet Name="Travailleur" EntityType="DBIG3A5Model.Travailleur" />
+          <AssociationSet Name="REF_Denom_Langu_2_FK" Association="DBIG3A5Model.REF_Denom_Langu_2_FK">
+            <End Role="Langue" EntitySet="Langue" />
+            <End Role="DenominationEmploi" EntitySet="DenominationEmploi" />
+          </AssociationSet>
+          <AssociationSet Name="REF_Emplo_Denom_FK" Association="DBIG3A5Model.REF_Emplo_Denom_FK">
+            <End Role="DenominationEmploi" EntitySet="DenominationEmploi" />
+            <End Role="Emploi" EntitySet="Emploi" />
+          </AssociationSet>
+          <AssociationSet Name="REF_Denom_Langu_FK" Association="DBIG3A5Model.REF_Denom_Langu_FK">
+            <End Role="Langue" EntitySet="Langue" />
+            <End Role="DenominationRisque" EntitySet="DenominationRisque" />
+          </AssociationSet>
+          <AssociationSet Name="REF_Risqu_Denom_FK" Association="DBIG3A5Model.REF_Risqu_Denom_FK">
+            <End Role="DenominationRisque" EntitySet="DenominationRisque" />
+            <End Role="Risque" EntitySet="Risque" />
+          </AssociationSet>
+          <AssociationSet Name="REF_Emplo_Entre" Association="DBIG3A5Model.REF_Emplo_Entre">
+            <End Role="Entreprise" EntitySet="Entreprise" />
+            <End Role="Emploi" EntitySet="Emploi" />
+          </AssociationSet>
+          <AssociationSet Name="REF_Emplo_Trava_FK" Association="DBIG3A5Model.REF_Emplo_Trava_FK">
+            <End Role="Travailleur" EntitySet="Travailleur" />
+            <End Role="Emploi" EntitySet="Emploi" />
+          </AssociationSet>
+          <AssociationSet Name="REF_Entre_Langu_FK" Association="DBIG3A5Model.REF_Entre_Langu_FK">
+            <End Role="Langue" EntitySet="Langue" />
+            <End Role="Entreprise" EntitySet="Entreprise" />
+          </AssociationSet>
+          <AssociationSet Name="RisqueEmploi" Association="DBIG3A5Model.RisqueEmploi">
+            <End Role="Emploi" EntitySet="Emploi" />
+            <End Role="Risque" EntitySet="Risque" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="DenominationEmploi">
+          <Key>
+            <PropertyRef Name="idDenom" />
+          </Key>
+          <Property Name="idDenom" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="denominationEmploi1" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="idLangue" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Langue" Relationship="DBIG3A5Model.REF_Denom_Langu_2_FK" FromRole="DenominationEmploi" ToRole="Langue" />
+          <NavigationProperty Name="Emploi" Relationship="DBIG3A5Model.REF_Emplo_Denom_FK" FromRole="DenominationEmploi" ToRole="Emploi" />
+        </EntityType>
+        <EntityType Name="DenominationRisque">
+          <Key>
+            <PropertyRef Name="idDenom" />
+          </Key>
+          <Property Name="idDenom" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="denomination" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="idLangue" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Langue" Relationship="DBIG3A5Model.REF_Denom_Langu_FK" FromRole="DenominationRisque" ToRole="Langue" />
+          <NavigationProperty Name="Risque" Relationship="DBIG3A5Model.REF_Risqu_Denom_FK" FromRole="DenominationRisque" ToRole="Risque" />
+        </EntityType>
+        <EntityType Name="Emploi">
+          <Key>
+            <PropertyRef Name="idTravail" />
+          </Key>
+          <Property Name="idTravail" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="travailleur" Type="Int32" Nullable="false" />
+          <Property Name="entreprise" Type="Int32" Nullable="false" />
+          <Property Name="codeTravail" Type="Decimal" Nullable="false" Precision="7" Scale="0" />
+          <Property Name="dateEntree" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="dateSortie" Type="DateTime" Precision="0" />
+          <Property Name="denom" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DenominationEmploi" Relationship="DBIG3A5Model.REF_Emplo_Denom_FK" FromRole="Emploi" ToRole="DenominationEmploi" />
+          <NavigationProperty Name="Entreprise1" Relationship="DBIG3A5Model.REF_Emplo_Entre" FromRole="Emploi" ToRole="Entreprise" />
+          <NavigationProperty Name="Travailleur1" Relationship="DBIG3A5Model.REF_Emplo_Trava_FK" FromRole="Emploi" ToRole="Travailleur" />
+          <NavigationProperty Name="Risque" Relationship="DBIG3A5Model.RisqueEmploi" FromRole="Emploi" ToRole="Risque" />
+        </EntityType>
+        <EntityType Name="Entreprise">
+          <Key>
+            <PropertyRef Name="numero" />
+          </Key>
+          <Property Name="numero" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="denominationEntreprise" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="numTel" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="nbrTravSoumis" Type="Decimal" Nullable="false" Precision="7" Scale="0" />
+          <Property Name="nbrTravNonSoumis" Type="Decimal" Nullable="false" Precision="7" Scale="0" />
+          <Property Name="idLangue" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Emploi" Relationship="DBIG3A5Model.REF_Emplo_Entre" FromRole="Entreprise" ToRole="Emploi" />
+          <NavigationProperty Name="Langue" Relationship="DBIG3A5Model.REF_Entre_Langu_FK" FromRole="Entreprise" ToRole="Langue" />
+        </EntityType>
+        <EntityType Name="Langue">
+          <Key>
+            <PropertyRef Name="idLangue" />
+          </Key>
+          <Property Name="idLangue" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="libelle" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DenominationEmploi" Relationship="DBIG3A5Model.REF_Denom_Langu_2_FK" FromRole="Langue" ToRole="DenominationEmploi" />
+          <NavigationProperty Name="DenominationRisque" Relationship="DBIG3A5Model.REF_Denom_Langu_FK" FromRole="Langue" ToRole="DenominationRisque" />
+          <NavigationProperty Name="Entreprise" Relationship="DBIG3A5Model.REF_Entre_Langu_FK" FromRole="Langue" ToRole="Entreprise" />
+        </EntityType>
+        <EntityType Name="Risque">
+          <Key>
+            <PropertyRef Name="idRisque" />
+          </Key>
+          <Property Name="idRisque" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="pourc" Type="Int32" Nullable="false" />
+          <Property Name="idDenom" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DenominationRisque" Relationship="DBIG3A5Model.REF_Risqu_Denom_FK" FromRole="Risque" ToRole="DenominationRisque" />
+          <NavigationProperty Name="Emploi" Relationship="DBIG3A5Model.RisqueEmploi" FromRole="Risque" ToRole="Emploi" />
+        </EntityType>
+        <EntityType Name="Travailleur">
+          <Key>
+            <PropertyRef Name="idTravailleur" />
+          </Key>
+          <Property Name="idTravailleur" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nom" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="numeroDossierMed" Type="Decimal" Nullable="false" Precision="7" Scale="0" />
+          <NavigationProperty Name="Emploi" Relationship="DBIG3A5Model.REF_Emplo_Trava_FK" FromRole="Travailleur" ToRole="Emploi" />
+        </EntityType>
+        <Association Name="REF_Denom_Langu_2_FK">
+          <End Type="DBIG3A5Model.Langue" Role="Langue" Multiplicity="1" />
+          <End Type="DBIG3A5Model.DenominationEmploi" Role="DenominationEmploi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Langue">
+              <PropertyRef Name="idLangue" />
+            </Principal>
+            <Dependent Role="DenominationEmploi">
+              <PropertyRef Name="idLangue" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="REF_Emplo_Denom_FK">
+          <End Type="DBIG3A5Model.DenominationEmploi" Role="DenominationEmploi" Multiplicity="1" />
+          <End Type="DBIG3A5Model.Emploi" Role="Emploi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DenominationEmploi">
+              <PropertyRef Name="idDenom" />
+            </Principal>
+            <Dependent Role="Emploi">
+              <PropertyRef Name="denom" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="REF_Denom_Langu_FK">
+          <End Type="DBIG3A5Model.Langue" Role="Langue" Multiplicity="1" />
+          <End Type="DBIG3A5Model.DenominationRisque" Role="DenominationRisque" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Langue">
+              <PropertyRef Name="idLangue" />
+            </Principal>
+            <Dependent Role="DenominationRisque">
+              <PropertyRef Name="idLangue" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="REF_Risqu_Denom_FK">
+          <End Type="DBIG3A5Model.DenominationRisque" Role="DenominationRisque" Multiplicity="1" />
+          <End Type="DBIG3A5Model.Risque" Role="Risque" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DenominationRisque">
+              <PropertyRef Name="idDenom" />
+            </Principal>
+            <Dependent Role="Risque">
+              <PropertyRef Name="idDenom" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="REF_Emplo_Entre">
+          <End Type="DBIG3A5Model.Entreprise" Role="Entreprise" Multiplicity="1" />
+          <End Type="DBIG3A5Model.Emploi" Role="Emploi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entreprise">
+              <PropertyRef Name="numero" />
+            </Principal>
+            <Dependent Role="Emploi">
+              <PropertyRef Name="entreprise" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="REF_Emplo_Trava_FK">
+          <End Type="DBIG3A5Model.Travailleur" Role="Travailleur" Multiplicity="1" />
+          <End Type="DBIG3A5Model.Emploi" Role="Emploi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Travailleur">
+              <PropertyRef Name="idTravailleur" />
+            </Principal>
+            <Dependent Role="Emploi">
+              <PropertyRef Name="travailleur" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="REF_Entre_Langu_FK">
+          <End Type="DBIG3A5Model.Langue" Role="Langue" Multiplicity="1" />
+          <End Type="DBIG3A5Model.Entreprise" Role="Entreprise" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Langue">
+              <PropertyRef Name="idLangue" />
+            </Principal>
+            <Dependent Role="Entreprise">
+              <PropertyRef Name="idLangue" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RisqueEmploi">
+          <End Type="DBIG3A5Model.Emploi" Role="Emploi" Multiplicity="*" />
+          <End Type="DBIG3A5Model.Risque" Role="Risque" Multiplicity="*" />
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DBIG3A5ModelStoreContainer" CdmEntityContainer="DBIG3A5Entities">
+          <EntitySetMapping Name="DenominationEmploi">
+            <EntityTypeMapping TypeName="DBIG3A5Model.DenominationEmploi">
+              <MappingFragment StoreEntitySet="DenominationEmploi">
+                <ScalarProperty Name="idLangue" ColumnName="idLangue" />
+                <ScalarProperty Name="denominationEmploi1" ColumnName="denominationEmploi" />
+                <ScalarProperty Name="idDenom" ColumnName="idDenom" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DenominationRisque">
+            <EntityTypeMapping TypeName="DBIG3A5Model.DenominationRisque">
+              <MappingFragment StoreEntitySet="DenominationRisque">
+                <ScalarProperty Name="idLangue" ColumnName="idLangue" />
+                <ScalarProperty Name="denomination" ColumnName="denomination" />
+                <ScalarProperty Name="idDenom" ColumnName="idDenom" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Emploi">
+            <EntityTypeMapping TypeName="DBIG3A5Model.Emploi">
+              <MappingFragment StoreEntitySet="Emploi">
+                <ScalarProperty Name="denom" ColumnName="denom" />
+                <ScalarProperty Name="dateSortie" ColumnName="dateSortie" />
+                <ScalarProperty Name="dateEntree" ColumnName="dateEntree" />
+                <ScalarProperty Name="codeTravail" ColumnName="codeTravail" />
+                <ScalarProperty Name="entreprise" ColumnName="entreprise" />
+                <ScalarProperty Name="travailleur" ColumnName="travailleur" />
+                <ScalarProperty Name="idTravail" ColumnName="idTravail" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Entreprise">
+            <EntityTypeMapping TypeName="DBIG3A5Model.Entreprise">
+              <MappingFragment StoreEntitySet="Entreprise">
+                <ScalarProperty Name="idLangue" ColumnName="idLangue" />
+                <ScalarProperty Name="nbrTravNonSoumis" ColumnName="nbrTravNonSoumis" />
+                <ScalarProperty Name="nbrTravSoumis" ColumnName="nbrTravSoumis" />
+                <ScalarProperty Name="numTel" ColumnName="numTel" />
+                <ScalarProperty Name="denominationEntreprise" ColumnName="denominationEntreprise" />
+                <ScalarProperty Name="numero" ColumnName="numero" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Langue">
+            <EntityTypeMapping TypeName="DBIG3A5Model.Langue">
+              <MappingFragment StoreEntitySet="Langue">
+                <ScalarProperty Name="libelle" ColumnName="libelle" />
+                <ScalarProperty Name="idLangue" ColumnName="idLangue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Risque">
+            <EntityTypeMapping TypeName="DBIG3A5Model.Risque">
+              <MappingFragment StoreEntitySet="Risque">
+                <ScalarProperty Name="idDenom" ColumnName="idDenom" />
+                <ScalarProperty Name="pourc" ColumnName="pourc" />
+                <ScalarProperty Name="idRisque" ColumnName="idRisque" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Travailleur">
+            <EntityTypeMapping TypeName="DBIG3A5Model.Travailleur">
+              <MappingFragment StoreEntitySet="Travailleur">
+                <ScalarProperty Name="numeroDossierMed" ColumnName="numeroDossierMed" />
+                <ScalarProperty Name="nom" ColumnName="nom" />
+                <ScalarProperty Name="idTravailleur" ColumnName="idTravailleur" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="RisqueEmploi" TypeName="DBIG3A5Model.RisqueEmploi" StoreEntitySet="RisqueEmploi">
+            <EndProperty Name="Risque">
+              <ScalarProperty Name="idRisque" ColumnName="idRisque" />
+            </EndProperty>
+            <EndProperty Name="Emploi">
+              <ScalarProperty Name="idTravail" ColumnName="idTravail" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,58 @@
+﻿@model EncodageEmploi.Entreprise
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Entreprise</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.denominationEntreprise)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.denominationEntreprise)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.numTel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.numTel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nbrTravSoumis)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nbrTravSoumis)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nbrTravNonSoumis)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nbrTravNonSoumis)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Langue.libelle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Langue.libelle)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.numero }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

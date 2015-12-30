@@ -1,0 +1,227 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DBIG3A5Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="DenominationEmploi">
+    <Key>
+      <PropertyRef Name="idDenom" />
+    </Key>
+    <Property Name="idDenom" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="denominationEmploi" Type="varchar" MaxLength="40" Nullable="false" />
+    <Property Name="idLangue" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DenominationRisque">
+    <Key>
+      <PropertyRef Name="idDenom" />
+    </Key>
+    <Property Name="idDenom" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="denomination" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="idLangue" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Emploi">
+    <Key>
+      <PropertyRef Name="idTravail" />
+    </Key>
+    <Property Name="idTravail" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="travailleur" Type="int" Nullable="false" />
+    <Property Name="entreprise" Type="int" Nullable="false" />
+    <Property Name="codeTravail" Type="numeric" Precision="7" Scale="0" Nullable="false" />
+    <Property Name="dateEntree" Type="date" Nullable="false" />
+    <Property Name="dateSortie" Type="date" />
+    <Property Name="denom" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Entreprise">
+    <Key>
+      <PropertyRef Name="numero" />
+    </Key>
+    <Property Name="numero" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="denominationEntreprise" Type="varchar" MaxLength="40" Nullable="false" />
+    <Property Name="numTel" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="nbrTravSoumis" Type="numeric" Precision="7" Scale="0" Nullable="false" />
+    <Property Name="nbrTravNonSoumis" Type="numeric" Precision="7" Scale="0" Nullable="false" />
+    <Property Name="idLangue" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Langue">
+    <Key>
+      <PropertyRef Name="idLangue" />
+    </Key>
+    <Property Name="idLangue" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="libelle" Type="varchar" MaxLength="40" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Risque">
+    <Key>
+      <PropertyRef Name="idRisque" />
+    </Key>
+    <Property Name="idRisque" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="pourc" Type="int" Nullable="false" />
+    <Property Name="idDenom" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RisqueEmploi">
+    <Key>
+      <PropertyRef Name="idTravail" />
+      <PropertyRef Name="idRisque" />
+    </Key>
+    <Property Name="idTravail" Type="int" Nullable="false" />
+    <Property Name="idRisque" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Travailleur">
+    <Key>
+      <PropertyRef Name="idTravailleur" />
+    </Key>
+    <Property Name="idTravailleur" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nom" Type="varchar" MaxLength="40" Nullable="false" />
+    <Property Name="numeroDossierMed" Type="numeric" Precision="7" Scale="0" Nullable="false" />
+  </EntityType>
+  <Association Name="REF_Denom_Langu_2_FK">
+    <End Role="Langue" Type="Self.Langue" Multiplicity="1" />
+    <End Role="DenominationEmploi" Type="Self.DenominationEmploi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Langue">
+        <PropertyRef Name="idLangue" />
+      </Principal>
+      <Dependent Role="DenominationEmploi">
+        <PropertyRef Name="idLangue" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="REF_Denom_Langu_FK">
+    <End Role="Langue" Type="Self.Langue" Multiplicity="1" />
+    <End Role="DenominationRisque" Type="Self.DenominationRisque" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Langue">
+        <PropertyRef Name="idLangue" />
+      </Principal>
+      <Dependent Role="DenominationRisque">
+        <PropertyRef Name="idLangue" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="REF_Emplo_Denom_FK">
+    <End Role="DenominationEmploi" Type="Self.DenominationEmploi" Multiplicity="1" />
+    <End Role="Emploi" Type="Self.Emploi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DenominationEmploi">
+        <PropertyRef Name="idDenom" />
+      </Principal>
+      <Dependent Role="Emploi">
+        <PropertyRef Name="denom" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="REF_Emplo_Entre">
+    <End Role="Entreprise" Type="Self.Entreprise" Multiplicity="1" />
+    <End Role="Emploi" Type="Self.Emploi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Entreprise">
+        <PropertyRef Name="numero" />
+      </Principal>
+      <Dependent Role="Emploi">
+        <PropertyRef Name="entreprise" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="REF_Emplo_Trava_FK">
+    <End Role="Travailleur" Type="Self.Travailleur" Multiplicity="1" />
+    <End Role="Emploi" Type="Self.Emploi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Travailleur">
+        <PropertyRef Name="idTravailleur" />
+      </Principal>
+      <Dependent Role="Emploi">
+        <PropertyRef Name="travailleur" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="REF_Entre_Langu_FK">
+    <End Role="Langue" Type="Self.Langue" Multiplicity="1" />
+    <End Role="Entreprise" Type="Self.Entreprise" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Langue">
+        <PropertyRef Name="idLangue" />
+      </Principal>
+      <Dependent Role="Entreprise">
+        <PropertyRef Name="idLangue" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="REF_Risqu_Denom_FK">
+    <End Role="DenominationRisque" Type="Self.DenominationRisque" Multiplicity="1" />
+    <End Role="Risque" Type="Self.Risque" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DenominationRisque">
+        <PropertyRef Name="idDenom" />
+      </Principal>
+      <Dependent Role="Risque">
+        <PropertyRef Name="idDenom" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="REF_Risqu_Emploi">
+    <End Role="Emploi" Type="Self.Emploi" Multiplicity="1" />
+    <End Role="RisqueEmploi" Type="Self.RisqueEmploi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Emploi">
+        <PropertyRef Name="idTravail" />
+      </Principal>
+      <Dependent Role="RisqueEmploi">
+        <PropertyRef Name="idTravail" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="REF_Risqu_Risqu">
+    <End Role="Risque" Type="Self.Risque" Multiplicity="1" />
+    <End Role="RisqueEmploi" Type="Self.RisqueEmploi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Risque">
+        <PropertyRef Name="idRisque" />
+      </Principal>
+      <Dependent Role="RisqueEmploi">
+        <PropertyRef Name="idRisque" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DBIG3A5ModelStoreContainer">
+    <EntitySet Name="DenominationEmploi" EntityType="Self.DenominationEmploi" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DenominationRisque" EntityType="Self.DenominationRisque" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Emploi" EntityType="Self.Emploi" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Entreprise" EntityType="Self.Entreprise" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Langue" EntityType="Self.Langue" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Risque" EntityType="Self.Risque" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RisqueEmploi" EntityType="Self.RisqueEmploi" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Travailleur" EntityType="Self.Travailleur" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="REF_Denom_Langu_2_FK" Association="Self.REF_Denom_Langu_2_FK">
+      <End Role="Langue" EntitySet="Langue" />
+      <End Role="DenominationEmploi" EntitySet="DenominationEmploi" />
+    </AssociationSet>
+    <AssociationSet Name="REF_Denom_Langu_FK" Association="Self.REF_Denom_Langu_FK">
+      <End Role="Langue" EntitySet="Langue" />
+      <End Role="DenominationRisque" EntitySet="DenominationRisque" />
+    </AssociationSet>
+    <AssociationSet Name="REF_Emplo_Denom_FK" Association="Self.REF_Emplo_Denom_FK">
+      <End Role="DenominationEmploi" EntitySet="DenominationEmploi" />
+      <End Role="Emploi" EntitySet="Emploi" />
+    </AssociationSet>
+    <AssociationSet Name="REF_Emplo_Entre" Association="Self.REF_Emplo_Entre">
+      <End Role="Entreprise" EntitySet="Entreprise" />
+      <End Role="Emploi" EntitySet="Emploi" />
+    </AssociationSet>
+    <AssociationSet Name="REF_Emplo_Trava_FK" Association="Self.REF_Emplo_Trava_FK">
+      <End Role="Travailleur" EntitySet="Travailleur" />
+      <End Role="Emploi" EntitySet="Emploi" />
+    </AssociationSet>
+    <AssociationSet Name="REF_Entre_Langu_FK" Association="Self.REF_Entre_Langu_FK">
+      <End Role="Langue" EntitySet="Langue" />
+      <End Role="Entreprise" EntitySet="Entreprise" />
+    </AssociationSet>
+    <AssociationSet Name="REF_Risqu_Denom_FK" Association="Self.REF_Risqu_Denom_FK">
+      <End Role="DenominationRisque" EntitySet="DenominationRisque" />
+      <End Role="Risque" EntitySet="Risque" />
+    </AssociationSet>
+    <AssociationSet Name="REF_Risqu_Emploi" Association="Self.REF_Risqu_Emploi">
+      <End Role="Emploi" EntitySet="Emploi" />
+      <End Role="RisqueEmploi" EntitySet="RisqueEmploi" />
+    </AssociationSet>
+    <AssociationSet Name="REF_Risqu_Risqu" Association="Self.REF_Risqu_Risqu">
+      <End Role="Risque" EntitySet="Risque" />
+      <End Role="RisqueEmploi" EntitySet="RisqueEmploi" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

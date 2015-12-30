@@ -1,0 +1,66 @@
+﻿@model EncodageEmploi.Emploi
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Emploi</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.codeTravail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.codeTravail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dateEntree)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dateEntree)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dateSortie)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dateSortie)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DenominationEmploi.denominationEmploi1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DenominationEmploi.denominationEmploi1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Entreprise1.denominationEntreprise)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Entreprise1.denominationEntreprise)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Travailleur1.nom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Travailleur1.nom)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idTravail }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
