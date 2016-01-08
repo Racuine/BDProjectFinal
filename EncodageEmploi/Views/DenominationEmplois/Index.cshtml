@@ -1,27 +1,26 @@
 ﻿@model IEnumerable<EncodageEmploi.DenominationEmploi>
 
 @{
-ViewBag.Title = "Index";
+    ViewBag.Title = "Index";
 }
 
 <h2>Index</h2>
 
 <p>
-@Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
-<tr>
-    <th>
-        @Html.DisplayNameFor(model => model.denomination)
-    </th>
-    <th>
-        @Html.DisplayNameFor(model => model.Langue.libelle)
-    </th>
-    <th></th>
-</tr>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.denomination)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Langue.libelle)
+        </th>
+        <th></th>
+    </tr>
 
-@foreach (var item in Model)
-{
+@foreach (var item in Model) {
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.denomination)
@@ -30,9 +29,9 @@ ViewBag.Title = "Index";
             @Html.DisplayFor(modelItem => item.Langue.libelle)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.idDenom }) |
-            @Html.ActionLink("Details", "Details", new { id = item.idDenom }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.idDenom })
+            @Html.ActionLink("Edit", "Edit", new { id=item.idDenom }) |
+            @Html.ActionLink("Details", "Details", new { id=item.idDenom }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.idDenom })
         </td>
     </tr>
 }

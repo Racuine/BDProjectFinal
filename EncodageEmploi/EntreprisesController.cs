@@ -47,7 +47,7 @@ namespace EncodageEmploi
         // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "numero,denominationEntreprise,numTel,nbrTravSoumis,nbrTravNonSoumis,idLangue")] Entreprise entreprise)
+        public ActionResult Create([Bind(Include = "numero,denomination,numTel,nbrTravSoumis,nbrTravNonSoumis,idLangue")] Entreprise entreprise)
         {
             if (ModelState.IsValid)
             {
@@ -81,7 +81,7 @@ namespace EncodageEmploi
         // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "numero,denominationEntreprise,numTel,nbrTravSoumis,nbrTravNonSoumis,idLangue")] Entreprise entreprise)
+        public ActionResult Edit([Bind(Include = "numero,denomination,numTel,nbrTravSoumis,nbrTravNonSoumis,idLangue")] Entreprise entreprise)
         {
             if (ModelState.IsValid)
             {

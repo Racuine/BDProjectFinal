@@ -29,13 +29,12 @@
             @Html.DisplayFor(modelItem => item.numeroDossierMed)
         </td>
         <td>
-            @Html.ActionLink("Details", "Details", new { id=item.idTravailleur }) 
+            @Html.ActionLink("Details", "Details", new { id=item.idTravailleur })
         </td>
     </tr>
 }
 
 </table>
-
 <div>
     @Html.ActionLink("Back to List", "../Emplois/Index")
 </div>

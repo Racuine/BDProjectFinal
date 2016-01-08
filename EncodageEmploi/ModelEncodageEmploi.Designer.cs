@@ -1,4 +1,4 @@
-﻿// La génération de code T4 est activée pour le modèle 'C:\Users\milou_000\Desktop\Cours 3eme IG\BD avancee\EncodageEmploi\EncodageEmploi\ModelEncodageEmploi.edmx'. 
+﻿// La génération de code T4 est activée pour le modèle 'C:\Users\milou_000\Desktop\Cours 3eme IG\BD avancee\ProjetTest3\EncodageEmploi\ModelEncodageEmploi.edmx'. 
 // Pour activer la génération de code héritée, définissez la valeur de la propriété
 // du concepteur 'Stratégie de génération de code' sur 'ObjectContext hérité'. Cette propriété est disponible dans la fenêtre Propriétés lorsque le modèle
 //  est ouvert dans le concepteur.

@@ -5,7 +5,7 @@
       <PropertyRef Name="idDenom" />
     </Key>
     <Property Name="idDenom" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="denominationEmploi" Type="varchar" MaxLength="40" Nullable="false" />
+    <Property Name="denomination" Type="varchar" MaxLength="40" Nullable="false" />
     <Property Name="idLangue" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="DenominationRisque">
@@ -21,19 +21,19 @@
       <PropertyRef Name="idTravail" />
     </Key>
     <Property Name="idTravail" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="travailleur" Type="int" Nullable="false" />
-    <Property Name="entreprise" Type="int" Nullable="false" />
+    <Property Name="idTravailleur" Type="int" Nullable="false" />
+    <Property Name="numero" Type="int" Nullable="false" />
     <Property Name="codeTravail" Type="numeric" Precision="7" Scale="0" Nullable="false" />
     <Property Name="dateEntree" Type="date" Nullable="false" />
     <Property Name="dateSortie" Type="date" />
-    <Property Name="denom" Type="int" Nullable="false" />
+    <Property Name="idDenom" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Entreprise">
     <Key>
       <PropertyRef Name="numero" />
     </Key>
     <Property Name="numero" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="denominationEntreprise" Type="varchar" MaxLength="40" Nullable="false" />
+    <Property Name="denomination" Type="varchar" MaxLength="40" Nullable="false" />
     <Property Name="numTel" Type="varchar" MaxLength="15" Nullable="false" />
     <Property Name="nbrTravSoumis" Type="numeric" Precision="7" Scale="0" Nullable="false" />
     <Property Name="nbrTravNonSoumis" Type="numeric" Precision="7" Scale="0" Nullable="false" />
@@ -102,7 +102,7 @@
         <PropertyRef Name="idDenom" />
       </Principal>
       <Dependent Role="Emploi">
-        <PropertyRef Name="denom" />
+        <PropertyRef Name="idDenom" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -114,7 +114,7 @@
         <PropertyRef Name="numero" />
       </Principal>
       <Dependent Role="Emploi">
-        <PropertyRef Name="entreprise" />
+        <PropertyRef Name="numero" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -126,7 +126,7 @@
         <PropertyRef Name="idTravailleur" />
       </Principal>
       <Dependent Role="Emploi">
-        <PropertyRef Name="travailleur" />
+        <PropertyRef Name="idTravailleur" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

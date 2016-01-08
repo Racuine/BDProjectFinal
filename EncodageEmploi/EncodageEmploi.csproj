@@ -263,26 +263,26 @@
     <Content Include="Views\web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\DenominationEmplois\Create.cshtml" />
-    <Content Include="Views\DenominationEmplois\Delete.cshtml" />
-    <Content Include="Views\DenominationEmplois\Details.cshtml" />
-    <Content Include="Views\DenominationEmplois\Edit.cshtml" />
-    <Content Include="Views\DenominationEmplois\Index.cshtml" />
     <Content Include="Views\Emplois\Create.cshtml" />
     <Content Include="Views\Emplois\Delete.cshtml" />
     <Content Include="Views\Emplois\Details.cshtml" />
     <Content Include="Views\Emplois\Edit.cshtml" />
     <Content Include="Views\Emplois\Index.cshtml" />
-    <Content Include="Views\Travailleurs\Create.cshtml" />
-    <Content Include="Views\Travailleurs\Delete.cshtml" />
-    <Content Include="Views\Travailleurs\Details.cshtml" />
-    <Content Include="Views\Travailleurs\Edit.cshtml" />
-    <Content Include="Views\Travailleurs\Index.cshtml" />
     <Content Include="Views\Entreprises\Create.cshtml" />
     <Content Include="Views\Entreprises\Delete.cshtml" />
     <Content Include="Views\Entreprises\Details.cshtml" />
     <Content Include="Views\Entreprises\Edit.cshtml" />
     <Content Include="Views\Entreprises\Index.cshtml" />
+    <Content Include="Views\DenominationEmplois\Create.cshtml" />
+    <Content Include="Views\DenominationEmplois\Delete.cshtml" />
+    <Content Include="Views\DenominationEmplois\Details.cshtml" />
+    <Content Include="Views\DenominationEmplois\Edit.cshtml" />
+    <Content Include="Views\DenominationEmplois\Index.cshtml" />
+    <Content Include="Views\Travailleurs\Create.cshtml" />
+    <Content Include="Views\Travailleurs\Delete.cshtml" />
+    <Content Include="Views\Travailleurs\Details.cshtml" />
+    <Content Include="Views\Travailleurs\Edit.cshtml" />
+    <Content Include="Views\Travailleurs\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

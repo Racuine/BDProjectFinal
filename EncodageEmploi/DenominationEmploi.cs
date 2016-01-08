@@ -21,7 +21,7 @@ namespace EncodageEmploi
         }
     
         public int idDenom { get; set; }
-        public string denominationEmploi1 { get; set; }
+        public string denomination { get; set; }
         public int idLangue { get; set; }
     
         public virtual Langue Langue { get; set; }

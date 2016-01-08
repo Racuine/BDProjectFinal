@@ -21,16 +21,16 @@ namespace EncodageEmploi
         }
     
         public int idTravail { get; set; }
-        public int travailleur { get; set; }
-        public int entreprise { get; set; }
+        public int idTravailleur { get; set; }
+        public int numero { get; set; }
         public decimal codeTravail { get; set; }
         public System.DateTime dateEntree { get; set; }
         public Nullable<System.DateTime> dateSortie { get; set; }
-        public int denom { get; set; }
+        public int idDenom { get; set; }
     
         public virtual DenominationEmploi DenominationEmploi { get; set; }
-        public virtual Entreprise Entreprise1 { get; set; }
-        public virtual Travailleur Travailleur1 { get; set; }
+        public virtual Entreprise Entreprise { get; set; }
+        public virtual Travailleur Travailleur { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Risque> Risque { get; set; }
     }

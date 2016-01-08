@@ -12,7 +12,7 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.denominationEntreprise)
+            @Html.DisplayNameFor(model => model.denomination)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.numTel)
@@ -32,7 +32,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.denominationEntreprise)
+            @Html.DisplayFor(modelItem => item.denomination)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.numTel)
@@ -55,7 +55,6 @@
 }
 
 </table>
-
 <div>
     @Html.ActionLink("Back to List", "../Emplois/Index")
 </div>

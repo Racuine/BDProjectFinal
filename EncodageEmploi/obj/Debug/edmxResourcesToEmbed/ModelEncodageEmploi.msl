@@ -5,7 +5,7 @@
       <EntityTypeMapping TypeName="DBIG3A5Model.DenominationEmploi">
         <MappingFragment StoreEntitySet="DenominationEmploi">
           <ScalarProperty Name="idLangue" ColumnName="idLangue" />
-          <ScalarProperty Name="denominationEmploi1" ColumnName="denominationEmploi" />
+          <ScalarProperty Name="denomination" ColumnName="denomination" />
           <ScalarProperty Name="idDenom" ColumnName="idDenom" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -22,12 +22,12 @@
     <EntitySetMapping Name="Emploi">
       <EntityTypeMapping TypeName="DBIG3A5Model.Emploi">
         <MappingFragment StoreEntitySet="Emploi">
-          <ScalarProperty Name="denom" ColumnName="denom" />
+          <ScalarProperty Name="idDenom" ColumnName="idDenom" />
           <ScalarProperty Name="dateSortie" ColumnName="dateSortie" />
           <ScalarProperty Name="dateEntree" ColumnName="dateEntree" />
           <ScalarProperty Name="codeTravail" ColumnName="codeTravail" />
-          <ScalarProperty Name="entreprise" ColumnName="entreprise" />
-          <ScalarProperty Name="travailleur" ColumnName="travailleur" />
+          <ScalarProperty Name="numero" ColumnName="numero" />
+          <ScalarProperty Name="idTravailleur" ColumnName="idTravailleur" />
           <ScalarProperty Name="idTravail" ColumnName="idTravail" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -39,7 +39,7 @@
           <ScalarProperty Name="nbrTravNonSoumis" ColumnName="nbrTravNonSoumis" />
           <ScalarProperty Name="nbrTravSoumis" ColumnName="nbrTravSoumis" />
           <ScalarProperty Name="numTel" ColumnName="numTel" />
-          <ScalarProperty Name="denominationEntreprise" ColumnName="denominationEntreprise" />
+          <ScalarProperty Name="denomination" ColumnName="denomination" />
           <ScalarProperty Name="numero" ColumnName="numero" />
         </MappingFragment>
       </EntityTypeMapping>

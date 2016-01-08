@@ -6,12 +6,12 @@
     <edmx:Diagrams>
       <Diagram DiagramId="cdf61211799649739f891257b6175a7d" Name="Diagram1">
         <EntityTypeShape EntityType="DBIG3A5Model.DenominationEmploi" Width="1.5" PointX="3" PointY="7.875" />
-        <EntityTypeShape EntityType="DBIG3A5Model.DenominationRisque" Width="1.5" PointX="3" PointY="1.875" />
-        <EntityTypeShape EntityType="DBIG3A5Model.Emploi" Width="1.5" PointX="5.25" PointY="5.625" />
-        <EntityTypeShape EntityType="DBIG3A5Model.Entreprise" Width="1.5" PointX="3" PointY="4.625" />
+        <EntityTypeShape EntityType="DBIG3A5Model.DenominationRisque" Width="1.5" PointX="3" PointY="5.125" />
+        <EntityTypeShape EntityType="DBIG3A5Model.Emploi" Width="1.5" PointX="5.25" PointY="4.25" />
+        <EntityTypeShape EntityType="DBIG3A5Model.Entreprise" Width="1.5" PointX="3" PointY="1.875" />
         <EntityTypeShape EntityType="DBIG3A5Model.Langue" Width="1.5" PointX="0.75" PointY="4.875" />
-        <EntityTypeShape EntityType="DBIG3A5Model.Risque" Width="1.5" PointX="7.5" PointY="4.375" />
-        <EntityTypeShape EntityType="DBIG3A5Model.Travailleur" Width="1.5" PointX="3" PointY="11.375" />
+        <EntityTypeShape EntityType="DBIG3A5Model.Risque" Width="1.5" PointX="7.5" PointY="4.875" />
+        <EntityTypeShape EntityType="DBIG3A5Model.Travailleur" Width="1.5" PointX="3" PointY="12" />
         <AssociationConnector Association="DBIG3A5Model.REF_Denom_Langu_2_FK" />
         <AssociationConnector Association="DBIG3A5Model.REF_Emplo_Denom_FK" />
         <AssociationConnector Association="DBIG3A5Model.REF_Denom_Langu_FK" />

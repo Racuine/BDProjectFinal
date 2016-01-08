@@ -21,7 +21,7 @@ namespace EncodageEmploi
         }
     
         public int numero { get; set; }
-        public string denominationEntreprise { get; set; }
+        public string denomination { get; set; }
         public string numTel { get; set; }
         public decimal nbrTravSoumis { get; set; }
         public decimal nbrTravNonSoumis { get; set; }

@@ -21,13 +21,13 @@
             @Html.DisplayNameFor(model => model.dateSortie)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DenominationEmploi.denominationEmploi1)
+            @Html.DisplayNameFor(model => model.DenominationEmploi.denomination)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Entreprise1.denominationEntreprise)
+            @Html.DisplayNameFor(model => model.Entreprise.denomination)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Travailleur1.nom)
+            @Html.DisplayNameFor(model => model.Travailleur.nom)
         </th>
         <th></th>
     </tr>
@@ -44,18 +44,16 @@
             @Html.DisplayFor(modelItem => item.dateSortie)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.DenominationEmploi.denominationEmploi1)
+            @Html.DisplayFor(modelItem => item.DenominationEmploi.denomination)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Entreprise1.denominationEntreprise)
-        </td>
-        <td> 
-            @Html.DisplayFor(modelItem => item.Travailleur1.nom)  
+            @Html.DisplayFor(modelItem => item.Entreprise.denomination)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.idTravail }) |
-            @Html.ActionLink("Details", "Details", new { id=item.idTravail }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.idTravail })
+            @Html.DisplayFor(modelItem => item.Travailleur.nom)
+        </td>
+        <td>
+            @Html.ActionLink("Details", "Details", new { id=item.idTravail })
         </td>
     </tr>
 }

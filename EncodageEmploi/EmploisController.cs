@@ -16,7 +16,7 @@ namespace EncodageEmploi
         // GET: Emplois
         public ActionResult Index()
         {
-            var emploi = db.Emploi.Include(e => e.DenominationEmploi).Include(e => e.Entreprise1).Include(e => e.Travailleur1);
+            var emploi = db.Emploi.Include(e => e.DenominationEmploi).Include(e => e.Entreprise).Include(e => e.Travailleur);
             return View(emploi.ToList());
         }
 
@@ -38,9 +38,9 @@ namespace EncodageEmploi
         // GET: Emplois/Create
         public ActionResult Create()
         {
-            ViewBag.denom = new SelectList(db.DenominationEmploi, "idDenom", "denominationEmploi1");
-            ViewBag.entreprise = new SelectList(db.Entreprise, "numero", "denominationEntreprise");
-            ViewBag.travailleur = new SelectList(db.Travailleur, "idTravailleur", "nom");
+            ViewBag.idDenom = new SelectList(db.DenominationEmploi, "idDenom", "denomination");
+            ViewBag.numero = new SelectList(db.Entreprise, "numero", "denomination");
+            ViewBag.idTravailleur = new SelectList(db.Travailleur, "idTravailleur", "nom");
             return View();
         }
 
@@ -49,7 +49,7 @@ namespace EncodageEmploi
         // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "idTravail,travailleur,entreprise,codeTravail,dateEntree,dateSortie,denom")] Emploi emploi)
+        public ActionResult Create([Bind(Include = "idTravail,idTravailleur,numero,codeTravail,dateEntree,dateSortie,idDenom")] Emploi emploi)
         {
             if (ModelState.IsValid)
             {
@@ -58,9 +58,9 @@ namespace EncodageEmploi
                 return RedirectToAction("Index");
             }
 
-            ViewBag.denom = new SelectList(db.DenominationEmploi, "idDenom", "denominationEmploi1", emploi.denom);
-            ViewBag.entreprise = new SelectList(db.Entreprise, "numero", "denominationEntreprise", emploi.entreprise);
-            ViewBag.travailleur = new SelectList(db.Travailleur, "idTravailleur", "nom", emploi.travailleur);
+            ViewBag.idDenom = new SelectList(db.DenominationEmploi, "idDenom", "denomination", emploi.idDenom);
+            ViewBag.numero = new SelectList(db.Entreprise, "numero", "denomination", emploi.numero);
+            ViewBag.idTravailleur = new SelectList(db.Travailleur, "idTravailleur", "nom", emploi.idTravailleur);
             return View(emploi);
         }
 
@@ -76,9 +76,10 @@ namespace EncodageEmploi
             {
                 return HttpNotFound();
             }
-            ViewBag.denom = new SelectList(db.DenominationEmploi, "idDenom", "denominationEmploi1", emploi.denom);
-            ViewBag.entreprise = new SelectList(db.Entreprise, "numero", "denominationEntreprise", emploi.entreprise);
-            ViewBag.travailleur = new SelectList(db.Travailleur, "idTravailleur", "nom", emploi.travailleur);
+            ViewBag.idDenom = new SelectList(db.DenominationEmploi, "idDenom", "denomination", emploi.idDenom);
+            ViewBag.numero = new SelectList(db.Entreprise, "numero", "denomination", emploi.numero);
+            ViewBag.idTravailleur = new SelectList(db.Travailleur, "idTravailleur", "nom", emploi.idTravailleur);
+           
             return View(emploi);
         }
 
@@ -87,7 +88,7 @@ namespace EncodageEmploi
         // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "idTravail,travailleur,entreprise,codeTravail,dateEntree,dateSortie,denom")] Emploi emploi)
+        public ActionResult Edit([Bind(Include = "idTravail,idTravailleur,numero,codeTravail,dateEntree,dateSortie,idDenom")] Emploi emploi)
         {
             if (ModelState.IsValid)
             {
@@ -95,9 +96,9 @@ namespace EncodageEmploi
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.denom = new SelectList(db.DenominationEmploi, "idDenom", "denominationEmploi1", emploi.denom);
-            ViewBag.entreprise = new SelectList(db.Entreprise, "numero", "denominationEntreprise", emploi.entreprise);
-            ViewBag.travailleur = new SelectList(db.Travailleur, "idTravailleur", "nom", emploi.travailleur);
+            ViewBag.idDenom = new SelectList(db.DenominationEmploi, "idDenom", "denomination", emploi.idDenom);
+            ViewBag.numero = new SelectList(db.Entreprise, "numero", "denomination", emploi.numero);
+            ViewBag.idTravailleur = new SelectList(db.Travailleur, "idTravailleur", "nom", emploi.idTravailleur);
             return View(emploi);
         }
 

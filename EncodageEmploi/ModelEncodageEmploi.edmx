@@ -10,7 +10,7 @@
             <PropertyRef Name="idDenom" />
           </Key>
           <Property Name="idDenom" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="denominationEmploi" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="denomination" Type="varchar" MaxLength="40" Nullable="false" />
           <Property Name="idLangue" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="DenominationRisque">
@@ -26,19 +26,19 @@
             <PropertyRef Name="idTravail" />
           </Key>
           <Property Name="idTravail" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="travailleur" Type="int" Nullable="false" />
-          <Property Name="entreprise" Type="int" Nullable="false" />
+          <Property Name="idTravailleur" Type="int" Nullable="false" />
+          <Property Name="numero" Type="int" Nullable="false" />
           <Property Name="codeTravail" Type="numeric" Precision="7" Scale="0" Nullable="false" />
           <Property Name="dateEntree" Type="date" Nullable="false" />
           <Property Name="dateSortie" Type="date" />
-          <Property Name="denom" Type="int" Nullable="false" />
+          <Property Name="idDenom" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Entreprise">
           <Key>
             <PropertyRef Name="numero" />
           </Key>
           <Property Name="numero" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="denominationEntreprise" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="denomination" Type="varchar" MaxLength="40" Nullable="false" />
           <Property Name="numTel" Type="varchar" MaxLength="15" Nullable="false" />
           <Property Name="nbrTravSoumis" Type="numeric" Precision="7" Scale="0" Nullable="false" />
           <Property Name="nbrTravNonSoumis" Type="numeric" Precision="7" Scale="0" Nullable="false" />
@@ -107,7 +107,7 @@
               <PropertyRef Name="idDenom" />
             </Principal>
             <Dependent Role="Emploi">
-              <PropertyRef Name="denom" />
+              <PropertyRef Name="idDenom" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -119,7 +119,7 @@
               <PropertyRef Name="numero" />
             </Principal>
             <Dependent Role="Emploi">
-              <PropertyRef Name="entreprise" />
+              <PropertyRef Name="numero" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -131,7 +131,7 @@
               <PropertyRef Name="idTravailleur" />
             </Principal>
             <Dependent Role="Emploi">
-              <PropertyRef Name="travailleur" />
+              <PropertyRef Name="idTravailleur" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -279,7 +279,7 @@
             <PropertyRef Name="idDenom" />
           </Key>
           <Property Name="idDenom" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="denominationEmploi1" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="denomination" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
           <Property Name="idLangue" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Langue" Relationship="DBIG3A5Model.REF_Denom_Langu_2_FK" FromRole="DenominationEmploi" ToRole="Langue" />
           <NavigationProperty Name="Emploi" Relationship="DBIG3A5Model.REF_Emplo_Denom_FK" FromRole="DenominationEmploi" ToRole="Emploi" />
@@ -299,15 +299,15 @@
             <PropertyRef Name="idTravail" />
           </Key>
           <Property Name="idTravail" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="travailleur" Type="Int32" Nullable="false" />
-          <Property Name="entreprise" Type="Int32" Nullable="false" />
+          <Property Name="idTravailleur" Type="Int32" Nullable="false" />
+          <Property Name="numero" Type="Int32" Nullable="false" />
           <Property Name="codeTravail" Type="Decimal" Nullable="false" Precision="7" Scale="0" />
           <Property Name="dateEntree" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="dateSortie" Type="DateTime" Precision="0" />
-          <Property Name="denom" Type="Int32" Nullable="false" />
+          <Property Name="idDenom" Type="Int32" Nullable="false" />
           <NavigationProperty Name="DenominationEmploi" Relationship="DBIG3A5Model.REF_Emplo_Denom_FK" FromRole="Emploi" ToRole="DenominationEmploi" />
-          <NavigationProperty Name="Entreprise1" Relationship="DBIG3A5Model.REF_Emplo_Entre" FromRole="Emploi" ToRole="Entreprise" />
-          <NavigationProperty Name="Travailleur1" Relationship="DBIG3A5Model.REF_Emplo_Trava_FK" FromRole="Emploi" ToRole="Travailleur" />
+          <NavigationProperty Name="Entreprise" Relationship="DBIG3A5Model.REF_Emplo_Entre" FromRole="Emploi" ToRole="Entreprise" />
+          <NavigationProperty Name="Travailleur" Relationship="DBIG3A5Model.REF_Emplo_Trava_FK" FromRole="Emploi" ToRole="Travailleur" />
           <NavigationProperty Name="Risque" Relationship="DBIG3A5Model.RisqueEmploi" FromRole="Emploi" ToRole="Risque" />
         </EntityType>
         <EntityType Name="Entreprise">
@@ -315,7 +315,7 @@
             <PropertyRef Name="numero" />
           </Key>
           <Property Name="numero" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="denominationEntreprise" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="denomination" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
           <Property Name="numTel" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="nbrTravSoumis" Type="Decimal" Nullable="false" Precision="7" Scale="0" />
           <Property Name="nbrTravNonSoumis" Type="Decimal" Nullable="false" Precision="7" Scale="0" />
@@ -372,7 +372,7 @@
               <PropertyRef Name="idDenom" />
             </Principal>
             <Dependent Role="Emploi">
-              <PropertyRef Name="denom" />
+              <PropertyRef Name="idDenom" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -408,7 +408,7 @@
               <PropertyRef Name="numero" />
             </Principal>
             <Dependent Role="Emploi">
-              <PropertyRef Name="entreprise" />
+              <PropertyRef Name="numero" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -420,7 +420,7 @@
               <PropertyRef Name="idTravailleur" />
             </Principal>
             <Dependent Role="Emploi">
-              <PropertyRef Name="travailleur" />
+              <PropertyRef Name="idTravailleur" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -450,7 +450,7 @@
             <EntityTypeMapping TypeName="DBIG3A5Model.DenominationEmploi">
               <MappingFragment StoreEntitySet="DenominationEmploi">
                 <ScalarProperty Name="idLangue" ColumnName="idLangue" />
-                <ScalarProperty Name="denominationEmploi1" ColumnName="denominationEmploi" />
+                <ScalarProperty Name="denomination" ColumnName="denomination" />
                 <ScalarProperty Name="idDenom" ColumnName="idDenom" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -467,12 +467,12 @@
           <EntitySetMapping Name="Emploi">
             <EntityTypeMapping TypeName="DBIG3A5Model.Emploi">
               <MappingFragment StoreEntitySet="Emploi">
-                <ScalarProperty Name="denom" ColumnName="denom" />
+                <ScalarProperty Name="idDenom" ColumnName="idDenom" />
                 <ScalarProperty Name="dateSortie" ColumnName="dateSortie" />
                 <ScalarProperty Name="dateEntree" ColumnName="dateEntree" />
                 <ScalarProperty Name="codeTravail" ColumnName="codeTravail" />
-                <ScalarProperty Name="entreprise" ColumnName="entreprise" />
-                <ScalarProperty Name="travailleur" ColumnName="travailleur" />
+                <ScalarProperty Name="numero" ColumnName="numero" />
+                <ScalarProperty Name="idTravailleur" ColumnName="idTravailleur" />
                 <ScalarProperty Name="idTravail" ColumnName="idTravail" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -484,7 +484,7 @@
                 <ScalarProperty Name="nbrTravNonSoumis" ColumnName="nbrTravNonSoumis" />
                 <ScalarProperty Name="nbrTravSoumis" ColumnName="nbrTravSoumis" />
                 <ScalarProperty Name="numTel" ColumnName="numTel" />
-                <ScalarProperty Name="denominationEntreprise" ColumnName="denominationEntreprise" />
+                <ScalarProperty Name="denomination" ColumnName="denomination" />
                 <ScalarProperty Name="numero" ColumnName="numero" />
               </MappingFragment>
             </EntityTypeMapping>
