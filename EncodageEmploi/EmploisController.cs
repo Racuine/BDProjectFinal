@@ -49,18 +49,29 @@ namespace EncodageEmploi
         // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "idTravail,idTravailleur,numero,codeTravail,dateEntree,dateSortie,idDenom")] Emploi emploi)
+        public ActionResult Create(Emploi emploi)
         {
-            if (ModelState.IsValid)
+            DateTime dateEnt = emploi.dateEntree;
+            DateTime? dateSor = emploi.dateSortie;
+
+            if (dateEnt > dateSor)
             {
-                db.Emploi.Add(emploi);
-                db.SaveChanges();
+                // insert code "Alert"
                 return RedirectToAction("Index");
             }
+            else
+            {
+                if (ModelState.IsValid)
+                {
+                    db.Emploi.Add(emploi);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
 
-            ViewBag.idDenom = new SelectList(db.DenominationEmploi, "idDenom", "denomination", emploi.idDenom);
-            ViewBag.numero = new SelectList(db.Entreprise, "numero", "denomination", emploi.numero);
-            ViewBag.idTravailleur = new SelectList(db.Travailleur, "idTravailleur", "nom", emploi.idTravailleur);
+                ViewBag.idDenom = new SelectList(db.DenominationEmploi, "idDenom", "denomination", emploi.idDenom);
+                ViewBag.numero = new SelectList(db.Entreprise, "numero", "denomination", emploi.numero);
+                ViewBag.idTravailleur = new SelectList(db.Travailleur, "idTravailleur", "nom", emploi.idTravailleur);
+            }
             return View(emploi);
         }
 
